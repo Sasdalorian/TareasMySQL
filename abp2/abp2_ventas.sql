@@ -23,18 +23,15 @@ DROP TABLE IF EXISTS `ventas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ventas` (
-  `idventa` int NOT NULL,
+  `idventa` int NOT NULL AUTO_INCREMENT,
   `vendedor` varchar(50) DEFAULT NULL,
   `cantArticulos` int NOT NULL,
   `subtotal` int NOT NULL,
   `impuesto` int NOT NULL,
   `total` int NOT NULL,
-  `clientes_idcliente` varchar(50) NOT NULL,
-  PRIMARY KEY (`idventa`),
-  KEY `clientes_idcliente_idx` (`clientes_idcliente`),
-  KEY `ventas_clientes_fk_idx` (`clientes_idcliente`),
-  CONSTRAINT `ventas_clientes_fk` FOREIGN KEY (`idventa`) REFERENCES `clientes` (`idcliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `clientes_idcliente` int NOT NULL,
+  PRIMARY KEY (`idventa`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +40,7 @@ CREATE TABLE `ventas` (
 
 LOCK TABLES `ventas` WRITE;
 /*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
-INSERT INTO `ventas` VALUES (1,'Lechuga',3,4500,500,50000,'1'),(2,NULL,2,1200,100,1400,'1'),(3,'Sas',5,10480,20,10500,'2'),(4,NULL,3,3800,200,4000,'3');
+INSERT INTO `ventas` VALUES (1,'Andres Aranda',3,4500,500,5000,1),(2,NULL,2,1200,100,1400,1),(3,'Cristina Cortes',5,10480,20,10500,2),(4,'Daniela Duran',1,5000,2500,7500,2),(5,NULL,3,3800,100,4000,3);
 /*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-23 21:52:25
+-- Dump completed on 2023-02-24 15:34:06

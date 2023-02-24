@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS `clientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `clientes` (
-  `idcliente` int NOT NULL,
+  `idcliente` int NOT NULL AUTO_INCREMENT,
   `nombres` varchar(50) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
-  `direccion` varchar(75) DEFAULT NULL,
+  `direccion` varchar(70) DEFAULT NULL,
   `telefono` int DEFAULT NULL,
   PRIMARY KEY (`idcliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Gato','El Gatrolo','Calle los gatos #123',991111111),(2,'Conomon','Mon','Calle Avenida Electronica',88885542),(3,'Z','Wafles','La Wafleria #254',2147483647),(4,'Antonia','Aranda','Calle Los Aromos #123',84674812);
+INSERT INTO `clientes` VALUES (1,'Antonia','Aranda','Calle Los Aromos #123',991111111),(2,'Bernarda','Barros','Pasaje Manuel Balmaceda #456',992222222),(3,'Carlos','Costa','Avenida Simon Bolivar #789',993333333);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-23 21:52:25
+-- Dump completed on 2023-02-24 15:34:06
