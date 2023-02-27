@@ -10,6 +10,8 @@ SELECT * FROM ventas;
 INSERT INTO clientes VALUES (1, 'Antonia', 'Aranda', 'Calle Los Aromos #123', 991111111);
 INSERT INTO clientes VALUES (2, 'Bernarda', 'Barros', 'Pasaje Manuel Balmaceda #456', 992222222);
 INSERT INTO clientes VALUES (3, 'Carlos', 'Costa', 'Avenida Simon Bolivar #789', 993333333);
+INSERT INTO clientes (idcliente, nombres, apellidos, telefono) VALUES (4, 'Carlos', 'Costa', 993333333);
+INSERT INTO clientes (idcliente, nombres, apellidos, telefono) VALUES (5, 'Vicente', 'Villalobos', 993333333);
 
 /* INSERTAR DATOS TABLA VENTAS */
 INSERT INTO ventas (idventa, vendedor, cantArticulos, subtotal, impuesto, total, clientes_idcliente) 
@@ -30,4 +32,12 @@ SELECT * FROM ventas WHERE subtotal + impuesto != total;
 SELECT SUM(ALL total) FROM ventas;
 
 /* 3- CONSULTA QUE PERMITA CONOCER EL LISTADO DE VENTAS DE LA CLIENTE "Antonia Aranda" */
-SELECT * FROM ventas LEFT JOIN clientes ON nombres = 'Antonia'
+SELECT * FROM ventas 
+	INNER JOIN clientes ON idcliente = ventas.clientes_idcliente
+		WHERE clientes.nombres = "Antonia";
+        
+/* 4- MOSTRAR identificador del cliente JUNTO CON nombre Y apellido EN UN SOLO CAMPO. DESPLEGAR LOS QUE NO TENGAN DIRECCION */
+SELECT idcliente, CONCAT( nombres, " ", apellidos) FROM clientes WHERE direccion IS NULL;
+
+/* 5- CONSULTA PARA SABER AL MISMO TIEMPO EL MONTO MINIMA VENTA Y MAXIMA VENTA REGISTRADA */
+SELECT MAX(total), MIN(total) FROM ventas;
