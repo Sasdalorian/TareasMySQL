@@ -289,22 +289,71 @@ SELECT SUM(p.precio) FROM producto p
 
 /* 15. Muestra el precio máximo, precio mínimo, precio medio y el número total de productos que tiene
 el fabricante Crucial. */
-
-
-/* 16. Muestra el número total de productos que tiene cada uno de los fabricantes. El listado también
-debe incluir los fabricantes que no tienen ningún producto. El resultado mostrará dos columnas,
-una con el nombre del fabricante y otra con el número de productos que tiene. Ordene el
-resultado descendentemente por el número de productos. */
+SELECT MAX(p.precio), MIN(p.precio), AVG(p.precio), COUNT(p.nombre) FROM producto p
+	JOIN fabricante f ON p.id_fabricante = f.id WHERE f.nombre LIKE "Crucial";
+    
+/* 16. Muestra el número total de productos que tiene cada uno de los fabricantes. 
+El listado también debe incluir los fabricantes que no tienen ningún producto. 
+El resultado mostrará dos columnas, una con el nombre del fabricante y otra con el número de productos que tiene. 
+Ordene el resultado descendentemente por el número de productos. */
+SELECT f.nombre, COUNT(p.nombre) AS Cantidad_Productos FROM fabricante f
+	LEFT JOIN producto p ON p.id_fabricante = f.id
+    GROUP BY f.id ORDER BY Cantidad_Productos DESC;
 
 /* 17. Muestra el precio máximo, precio mínimo y precio medio de los productos de cada uno de los
 fabricantes. El resultado mostrará el nombre del fabricante junto con los datos que se solicitan */
+SELECT f.nombre, MAX(p.precio), MIN(p.precio), AVG(p.precio) FROM fabricante f
+	INNER JOIN producto p ON p.id_fabricante = f.id
+    GROUP BY f.id;
 
 /* 18. Muestra el precio máximo, precio mínimo, precio medio y el número total de productos de los
-fabricantes que tienen un precio medio superior a 200. No es necesario mostrar el nombre del
-fabricante, con el identificador del fabricante es suficiente. */
+		fabricantes que tienen un precio medio superior a 200. 
+	No es necesario mostrar el nombre del fabricante, con el identificador del fabricante es suficiente. */
+SELECT f.id, MAX(p.precio), MIN(p.precio), AVG(p.precio) AS Precio_Medio, COUNT(p.nombre) AS Cantidad_Productos FROM fabricante f
+	INNER JOIN producto p ON p.id_fabricante = f.id 
+    GROUP BY f.id HAVING Precio_Medio > 200;
 
 /*19. Muestra el nombre de cada fabricante, junto con el precio máximo, precio mínimo, precio medio y
-el número total de productos de los fabricantes que tienen un precio medio superior a 200. Es
-necesario mostrar el nombre del fabricante. */
+el número total de productos de los fabricantes que tienen un precio medio superior a 200. 
+Es necesario mostrar el nombre del fabricante. */
+SELECT f.nombre AS Nombre_Fabricante, MAX(p.precio), MIN(p.precio), AVG(p.precio) AS Precio_Medio, COUNT(p.nombre) AS Cantidad_Productos FROM fabricante f
+	INNER JOIN producto p ON p.id_fabricante = f.id 
+    GROUP BY f.id HAVING Precio_Medio > 200;
 
 /* 20. Calcula el número de productos que tienen un precio mayor o igual a 180. */
+SELECT COUNT(nombre) FROM producto
+	WHERE precio >= 180;
+    
+/* 21. Calcula el número de productos que tiene cada fabricante con un precio mayor o igual a 180. */
+SELECT f.nombre, COUNT(p.nombre) FROM producto p
+	INNER JOIN fabricante f ON p.id_fabricante = f.id WHERE p.precio >= 180
+    GROUP BY f.id;
+
+/* 22. Lista el precio medio los productos de cada fabricante, mostrando solamente el identificador del fabricante. */
+SELECT f.id, AVG(p.precio) FROM fabricante f
+	INNER JOIN producto p ON p.id_fabricante = f.id
+    GROUP BY f.id;
+
+/* 23. Lista el precio medio los productos de cada fabricante, mostrando solamente el nombre del fabricante. */
+SELECT f.nombre, AVG(p.precio) FROM fabricante f
+	INNER JOIN producto p ON p.id_fabricante = f.id
+    GROUP BY f.id;
+
+/* 24. Lista los nombres de los fabricantes cuyos productos tienen un precio medio mayor o igual a 150. */
+SELECT f.nombre, AVG(p.precio) AS promedio_precio FROM fabricante f
+	JOIN producto p ON f.id = p.id_fabricante
+	GROUP BY f.id
+    HAVING AVG(p.precio) >= 150;
+    
+/* 25. Devuelve un listado con los nombres de los fabricantes que tienen 2 o más productos. */
+SELECT f.nombre, COUNT(p.nombre) AS Cantidad_Productos FROM fabricante f
+	LEFT JOIN producto p ON f.id = p.id_fabricante
+    GROUP BY f.id HAVING Cantidad_Productos >= 2;
+
+/* 26. Devuelve un listado con los nombres de los fabricantes y 
+		el número de productos que tiene cada uno con un precio superior o igual a 220.
+		No es necesario mostrar el nombre de los fabricantes que no tienen productos que cumplan la condición. */
+SELECT f.nombre, COUNT(p.nombre) AS Cantidad_Productos FROM fabricante f
+	LEFT JOIN producto p ON f.id = p.id_fabricante
+    WHERE p.precio >= 220
+    GROUP BY f.nombre 
