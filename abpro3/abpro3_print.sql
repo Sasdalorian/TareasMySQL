@@ -70,4 +70,4 @@ SELECT * FROM capacitacion;
 		Esto es, aquellas capacitaciones con el campo cantidadasistentes igual a 0, y sin registros relacionados en la tabla */
 
 DELETE c FROM capacitacion c WHERE cantidadasistentes = 0 OR cantidadasistentes IS NULL;
-SELECT * FROM capacitacion
+SELECT * FROM capacitacion 
