@@ -69,4 +69,5 @@ SELECT * FROM capacitacion;
 /* 6. Realice una consulta que permita eliminar todas aquellas capacitaciones que no tienen asistentes. 
 		Esto es, aquellas capacitaciones con el campo cantidadasistentes igual a 0, y sin registros relacionados en la tabla */
 
-
+DELETE c FROM capacitacion c WHERE cantidadasistentes = 0 OR cantidadasistentes IS NULL;
+SELECT * FROM capacitacion
