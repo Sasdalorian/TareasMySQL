@@ -59,9 +59,22 @@ INNER JOIN capacitacion c ON c.idcapacitacion = a.capacitacion_idcapacitacion;
 /* 5. Genere una consulta de actualización del registro insertado en la tabla de capacitaciones,
 que permita darles valores a los campos que no fueron considerados en la consulta original. */
 
+UPDATE capacitacion
+SET dia = "0" WHERE dia IS NULL;
+
+UPDATE capacitacion
+SET hora = "00:00" WHERE hora IS NULL;
+
+UPDATE capacitacion
+SET cantidadAsistente = "0" WHERE cantidadAsistente IS NULL;
+
+SELECT * FROM asistente a
+INNER JOIN capacitacion c ON c.idcapacitacion = a.capacitacion_idcapacitacion;
 
 /* 6. Genere una consulta que permita eliminar los asistentes anteriormente ingresados, pero en
 una sola consulta. */
 
+UPDATE capacitacion SET cantidadAsistente = NULL WHERE cantidadAsistente = "0";
 
 /* 7. Agregue una consulta para deshacer los cambios realizados. */
+ROLLBACK;
