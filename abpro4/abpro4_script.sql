@@ -43,9 +43,25 @@ SELECT * FROM capacitacion;
 /* PARA ACTIVAR EL COMMIT AUTOMATICO */
 SET autocomit = 1;
 
-
-
 /* 4. Agregue dos consultas para insertar un registro en la tabla de asistentes en cada una.
-Incluya en la consulta todos los campos de la tabla en orden descendente respecto de cómo
-aparece en la definición de la tabla. Asocie estos registros a la capacitación creada en el
-ítem 1 de este ejercicio. */
+Incluya en la consulta todos los campos de la tabla en orden descendente respecto de cómo aparece en la definición de la tabla. 
+Asocie estos registros a la capacitación creada en el ítem 1 de este ejercicio. */
+
+INSERT INTO asistente (idasistente, nombres, edad, capacitacion_idcapacitacion) VALUES
+	(1, 'Gato Gatrolo', 23, 1),
+	(2, 'Letuse Lechuga', 23, 2),
+    (3, 'EME Bus', 32, 3);
+SELECT * FROM asistente;
+
+SELECT a.idasistente, a.nombres, a.edad, a.capacitacion_idcapacitacion, c.idcapacitacion, c.lugar FROM asistente a
+INNER JOIN capacitacion c ON c.idcapacitacion = a.capacitacion_idcapacitacion;
+
+/* 5. Genere una consulta de actualización del registro insertado en la tabla de capacitaciones,
+que permita darles valores a los campos que no fueron considerados en la consulta original. */
+
+
+/* 6. Genere una consulta que permita eliminar los asistentes anteriormente ingresados, pero en
+una sola consulta. */
+
+
+/* 7. Agregue una consulta para deshacer los cambios realizados. */
