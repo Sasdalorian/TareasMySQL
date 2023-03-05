@@ -1,3 +1,4 @@
+CREATE SCHEMA abp5;
 USE abp5;
 
 /* 1. Desarrolle una consulta que permita generar una secuencia para el campo idcliente de la tabla clientes. 
